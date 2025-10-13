@@ -4,8 +4,6 @@ Autor: Dener Gomes Batista
 Tema: Full Stack Dev com "robô devorador de commits" no lugar da cobrinha
 -->
 
-### 🤖 Robô devorador de commits
-
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot-dark.svg" />
