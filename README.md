@@ -12,7 +12,7 @@ Gosto de transformar ideias em soluções reais e impactar positivamente o mundo
 
 🧠 **Foco atual:** desenvolvimento de plataformas educacionais e sistemas de eventos inteligentes.  
 ⚙️ **Interesses:** automação, arquitetura limpa, integração entre IA e back-end.  
-🎓 **Formação:** Técnico em Iformatica, desenvolvedor Web Fullstack e Analise e Desenvolvimento de Sistemas.  
+🎓 **Formação:** Técnico em Informatica, Desenvolvedor Web Fullstack e Análise e Desenvolvimento de Sistemas.  
 💡 **Mente criativa:** unir design, código e propósito.
 
 ---
