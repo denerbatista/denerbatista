@@ -22,37 +22,39 @@ jobs:
             dist/github-snake.svg?palette=github-light
             dist/github-snake-dark.svg?palette=github-dark&color_snake=00FFAA&color_dots=#00FFAA,#00DD88,#003322
 
-      # 2) Node para rodar o script
+      # 2) Copia para uma pasta writável (evita EACCES)
+      - name: Prepare writable output
+        run: |
+          mkdir -p robot_out
+          cp dist/*.svg robot_out/ || true
+          echo "Conteúdo robot_out:"
+          ls -l robot_out
+
+      # 3) Node para rodar o script
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # 3) Script CORRIGIDO que “robotiza” a snake
+      # 4) Script que “robotiza” a snake (gera novos SVGs em robot_out/)
       - name: Write robotize script
         run: |
           cat > robotize.js <<'EOF'
           const fs = require("fs");
+          const path = require("path");
 
           function robotize(input, output, headColor = "#00FF88", stroke = "#00FF88") {
             let svg = fs.readFileSync(input, "utf8");
 
-            // Garante um path de movimento com id estável
-            // (pega o primeiro <path ...> que não tenha id)
-            svg = svg.replace(/<path(?![^>]*\bid=)[^>]*>/, (m) => {
-              // injeta o id sem mexer nos demais atributos
-              return m.replace("<path", '<path id="snake-motion-path"');
-            });
+            // injeta id em um path sem id (primeiro que aparecer)
+            svg = svg.replace(/<path(?![^>]*\bid=)[^>]*>/, (m) => m.replace("<path", '<path id="snake-motion-path"'));
 
-            // Caso não tenha conseguido injetar (p.ex., já existe id),
-            // garante que exista o id em algum path:
+            // se ainda não tem o id, renomeia o primeiro id existente
             if (!svg.includes('id="snake-motion-path"')) {
-              svg = svg.replace(/<path[^>]*id="([^"]+)"[^>]*>/, (m) => {
-                return m.replace(/id="[^"]+"/, 'id="snake-motion-path"');
-              });
+              svg = svg.replace(/<path([^>]*)id="[^"]+"([^>]*)>/, '<path$1id="snake-motion-path"$2>');
             }
 
-            // Filtro glow: se não houver <defs>, cria; se houver, só injeta o filtro
+            // garante <defs> e injeta filtro glow
             if (!/<defs>/.test(svg)) {
               svg = svg.replace(/<svg([^>]*)>/, `<svg$1>\n<defs></defs>`);
             }
@@ -66,22 +68,16 @@ jobs:
               </filter>
             `);
 
-            // Grupo do robô + animação seguindo o path
             const robotGroup = `
             <g id="robot" filter="url(#glow)">
-              <!-- cabeça -->
               <circle cx="0" cy="0" r="10" fill="${headColor}" />
-              <!-- olhos -->
               <circle cx="-3.5" cy="-2.5" r="1.5" fill="black" />
               <circle cx="3.5" cy="-2.5" r="1.5" fill="black" />
-              <!-- boca -->
               <rect x="-5" y="2" width="10" height="3" rx="1.5" fill="black" />
-              <!-- antenas -->
               <line x1="-7" y1="-10" x2="-11" y2="-14" stroke="${stroke}" stroke-width="2" />
               <circle cx="-11" cy="-14" r="2" fill="${headColor}" />
               <line x1="7" y1="-10" x2="11" y2="-14" stroke="${stroke}" stroke-width="2" />
               <circle cx="11" cy="-14" r="2" fill="${headColor}" />
-              <!-- corpo -->
               <rect x="-8" y="11" width="16" height="10" rx="2" fill="${headColor}" opacity="0.2"/>
               <path d="M -6 12 L -6 18 M -2 12 L -2 18 M 2 12 L 2 18 M 6 12 L 6 18" stroke="${headColor}" stroke-width="1.5" opacity="0.7"/>
               <animateMotion dur="90s" repeatCount="indefinite" rotate="auto">
@@ -90,26 +86,24 @@ jobs:
             </g>
             `;
 
-            // Injeta o grupo imediatamente antes do fechamento do SVG
             svg = svg.replace(/<\/svg>\s*$/, `${robotGroup}\n</svg>`);
-
             fs.writeFileSync(output, svg, "utf8");
           }
 
-          fs.mkdirSync("dist", { recursive: true });
-          robotize("dist/github-snake.svg", "dist/github-robot.svg", "#00FF88", "#00FF88");
-          robotize("dist/github-snake-dark.svg", "dist/github-robot-dark.svg", "#00FF88", "#00FF88");
-          console.log("✅ Robot SVGs generated.");
+          fs.mkdirSync("robot_out", { recursive: true });
+          robotize("robot_out/github-snake.svg", "robot_out/github-robot.svg", "#00FF88", "#00FF88");
+          robotize("robot_out/github-snake-dark.svg", "robot_out/github-robot-dark.svg", "#00FF88", "#00FF88");
+          console.log("✅ Robot SVGs generated in robot_out/");
           EOF
 
       - name: Run robotize
         run: node robotize.js
 
-      # 4) Publica no branch output
+      # 5) Publica no branch output (publica robot_out/)
       - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: robot_out
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
