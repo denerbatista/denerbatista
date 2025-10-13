@@ -3,13 +3,6 @@ README do perfil GitHub: github.com/denerbatista
 Autor: Dener Gomes Batista
 Tema: Full Stack Dev com "robô devorador de commits" no lugar da cobrinha
 -->
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot-dark.svg" />
-    <img src="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot.svg" alt="Robô devorador de commits" />
-  </picture>
-</p>
 ---
 
 <div align="center">
@@ -58,6 +51,12 @@ Gosto de transformar ideias em soluções reais e impactar positivamente o mundo
   <img height="170" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=denerbatista&theme=chartreuse_dark" />
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot-dark.svg" />
+    <img src="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot.svg" alt="Robô devorador de commits" />
+  </picture>
+</p>
 ---
 
 ### 🌍 Onde me encontrar
