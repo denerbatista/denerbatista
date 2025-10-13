@@ -1,11 +1,11 @@
 <!--
-  README do perfil GitHub: github.com/denerbatista
-  Autor: Dener Gomes Batista
-  Tema: Full Stack Dev com visual moderno e animação de "robô devorador de commits"
+README do perfil GitHub: github.com/denerbatista
+Autor: Dener Gomes Batista
+Tema: Full Stack Dev com "robô devorador de commits" no lugar da cobrinha
 -->
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3500&pause=800&color=00FF88&center=true&vCenter=true&width=900&lines=Oi,+eu+sou+o+Dener+Batista!;Desenvolvedor+Full+Stack+%F0%9F%9A%80;React+%7C+TypeScript+%7C+Node+%7C+Laravel+%7C+Docker;Apaixonado+por+tecnologia+e+educa%C3%A7%C3%A3o!+%F0%9F%93%9A" alt="Typing animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3500&pause=800&color=00FF88&center=true&vCenter=true&width=900&lines=Oi,+eu+sou+o+Dener+Batista!;Desenvolvedor+Full+Stack+🚀;React+%7C+TypeScript+%7C+Node+%7C+Laravel+%7C+Docker;Apaixonado+por+tecnologia+e+educa%C3%A7%C3%A3o!+📚" alt="Typing animation" />
 </p>
 
 ---
@@ -49,16 +49,13 @@ Gosto de transformar ideias em soluções reais e impactar positivamente o mundo
 
 ---
 
-### 🌌 Robô devorador de commits (animação)
+### 🤖 Robô devorador de commits
 
-> 🔧 Essa animação é baseada na ferramenta [Platane/snk](https://github.com/Platane/snk),
-> mas com o tema “robô devorador” — substitui a cobrinha clássica por um estilo neon de inteligência artificial.
+> Uma releitura criativa da cobrinha tradicional: o **robô neon** que “absorve” seus commits com energia digital ⚡  
+> (A arte abaixo foi criada especialmente para este perfil.)
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot-dark.svg" />
-    <img alt="Robô devorador de commits" src="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot.svg" />
-  </picture>
+  <img src="https://raw.githubusercontent.com/denerbatista/denerbatista/main/A_digital_vector_illustration_features_two_neon-gr.png" alt="Robô devorador de commits" width="700px"/>
 </p>
 
 ---
