@@ -1,22 +1,101 @@
-## Oi eu sou o Dener Batista, desenvolvedor Full Stack apaixonado por tecnologia ! <img src="https://user-images.githubusercontent.com/95504029/151560441-2e792d97-fd65-462c-8fd7-70f581de5674.gif" width="100">
+<!--
+  README do perfil GitHub: github.com/denerbatista
+  Autor: Dener Gomes Batista
+  Tema: Full Stack Dev com visual moderno e animação de "robô devorador de commits"
+-->
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3500&pause=800&color=00FF88&center=true&vCenter=true&width=900&lines=Oi,+eu+sou+o+Dener+Batista!;Desenvolvedor+Full+Stack+%F0%9F%9A%80;React+%7C+TypeScript+%7C+Node+%7C+Laravel+%7C+Docker;Apaixonado+por+tecnologia+e+educa%C3%A7%C3%A3o!+%F0%9F%93%9A" alt="Typing animation" />
+</p>
+
+---
+
 <div align="center">
   <a href="https://github.com/denerbatista">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=denerbatista&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=denerbatista&layout=compact&langs_count=7&theme=chartreuse-dark"/>
+    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=denerbatista&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true"/>
+    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=denerbatista&layout=compact&langs_count=8&theme=chartreuse-dark"/>
+  </a>
 </div>
-<div style="display: inline_block"><br>
-  <img align="right" alt="Rafa-pic" height="150" style="border-radius:50px;" src="https://cdn.discordapp.com/attachments/947324026236330018/947325365930582046/AvatarMaker.png">
+
+---
+
+### 🚀 Sobre mim
+
+Sou **Desenvolvedor Full Stack** apaixonado por tecnologia, ensino e inovação.  
+Atuo criando sistemas modernos com **React**, **TypeScript**, **Node.js**, **PHP/Laravel**, **Prisma**, **MySQL** e **Docker**.  
+Gosto de transformar ideias em soluções reais e impactar positivamente o mundo da educação e da tecnologia.
+
+🧠 **Foco atual:** desenvolvimento de plataformas educacionais e sistemas de eventos inteligentes.  
+⚙️ **Interesses:** automação, arquitetura limpa, integração entre IA e back-end.  
+🎓 **Formação:** pedagogia e tecnologia da informação.  
+💡 **Mente criativa:** unir design, código e propósito.
+
+---
+
+### 🛠️ Tecnologias e Ferramentas
+
+<div style="display: flex; flex-wrap: wrap;">
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
+  <img height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" />
 </div>
-  
-  ##
- 
-<div> 
-    <a href="https://instagram.com/denerg_b" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
-    <a href="https://wa.me/+5527998079104?text=..." target="_blank"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" target="_blank"></a>
-   <a href = "mailto:denerbatista@icloud.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-   <a href="https://www.linkedin.com/in/dener-gomes-batista-83894168/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
- 
-  ![Snake animation](https://github.com/denerbatista/denerbatista/blob/output/github-contribution-grid-snake.svg)
- 
+
+---
+
+### 🌌 Robô devorador de commits (animação)
+
+> 🔧 Essa animação é baseada na ferramenta [Platane/snk](https://github.com/Platane/snk),
+> mas com o tema “robô devorador” — substitui a cobrinha clássica por um estilo neon de inteligência artificial.
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot-dark.svg" />
+    <img alt="Robô devorador de commits" src="https://raw.githubusercontent.com/denerbatista/denerbatista/output/github-robot.svg" />
+  </picture>
+</p>
+
+---
+
+### 📊 Métricas e Conquistas
+
+<p align="center">
+  <img height="170" src="https://streak-stats.demolab.com?user=denerbatista&theme=chartreuse-dark&hide_border=true" />
+  <img height="170" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=denerbatista&theme=chartreuse_dark" />
+</p>
+
+---
+
+### 🌍 Onde me encontrar
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dener-gomes-batista-83894168/)  
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:dener70@gmail.com)  
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/5527998079104?text=Ol%C3%A1%2C%20Dener!)  
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/denerg_b)  
+
 </div>
-  
+
+---
+
+### ✨ Projetos em destaque
+
+- 🧾 **Sistema de Eventos com QR Code e Pix** – controle de inscrições e validação inteligente.  
+- 🧑‍🏫 **Plataforma Educacional Unir Cursos** – cursos online com backend em Node e Prisma.  
+- ⚙️ **Sistema Inspetec** – monitoramento inteligente com IA e controle de acesso facial.  
+- 💻 **Dashboard Excel Avançado** – automação de relatórios e gráficos dinâmicos.
+
+> Confira todos os projetos em: [github.com/denerbatista?tab=repositories](https://github.com/denerbatista?tab=repositories)
+
+---
+
+<p align="center">
+  <sub>Feito com 💚 e muita cafeína por <a href="https://github.com/denerbatista">Dener Batista</a> 🚀</sub>
+</p>
