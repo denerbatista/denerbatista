@@ -2,21 +2,104 @@ name: Generate Robot Commit Animation
 
 on:
   schedule:
-    - cron: "0 */12 * * *" # atualiza 2x por dia
+    - cron: "0 */12 * * *"   # atualiza 2x por dia
   workflow_dispatch:
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: Platane/snk@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1) Gera a animação base (snake) usando Platane/snk
+      - name: Generate snake SVG
+        uses: Platane/snk@v3
         with:
           github_user_name: denerbatista
           outputs: |
-            dist/github-robot.svg?color_snake=00FFAA&color_dots=#00FFAA,#009944,#004422
-            dist/github-robot-dark.svg?palette=github-dark&color_snake=00FFAA&color_dots=#00FFAA,#00DD88,#003322
-      - name: Push output to branch
+            dist/github-snake.svg?palette=github-light
+            dist/github-snake-dark.svg?palette=github-dark&color_snake=00FFAA&color_dots=#00FFAA,#00DD88,#003322
+
+      # 2) Instala Node para rodar o script de "robotização"
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # 3) Cria o script que converte a snake num robô animado
+      - name: Write robotize script
+        run: |
+          cat > robotize.js <<'EOF'
+          const fs = require("fs");
+
+          function robotize(input, output, headColor="#00FF88", stroke="#00FF88") {
+            let svg = fs.readFileSync(input, "utf8");
+
+            // Garante que haja um path de movimento com id estável
+            // pega o PRIMEIRO <path ...> e coloca um id para animar
+            svg = svg.replace(/<path(?![^>]*id=)/, '<path id="snake-motion-path"');
+
+            // Opcional: esconder a cabeça/linha original, quando identificável
+            svg = svg.replace(/id="snake"([^>]*)>/, 'id="snake"$1 style="opacity:.22">');
+
+            // Injeta o ROBÔ (vetor simples neon) + animação ao final do SVG
+            // O robô é um grupo vetorial leve; ele "segue" o caminho com animateMotion.
+            const robotGroup = `
+            <g id="robot" filter="url(#glow)">
+              <!-- cabeça -->
+              <circle cx="0" cy="0" r="10" fill="${headColor}" />
+              <!-- olhos -->
+              <circle cx="-3.5" cy="-2.5" r="1.5" fill="black" />
+              <circle cx="3.5" cy="-2.5" r="1.5" fill="black" />
+              <!-- boca -->
+              <rect x="-5" y="2" width="10" height="3" rx="1.5" fill="black" />
+              <!-- antenas -->
+              <line x1="-7" y1="-10" x2="-11" y2="-14" stroke="${stroke}" stroke-width="2" />
+              <circle cx="-11" cy="-14" r="2" fill="${headColor}" />
+              <line x1="7" y1="-10" x2="11" y2="-14" stroke="${stroke}" stroke-width="2" />
+              <circle cx="11" cy="-14" r="2" fill="${headColor}" />
+              <!-- corpo "circuito" -->
+              <rect x="-8" y="11" width="16" height="10" rx="2" fill="${headColor}" opacity="0.2"/>
+              <path d="M -6 12 L -6 18 M -2 12 L -2 18 M 2 12 L 2 18 M 6 12 L 6 18" stroke="${headColor}" stroke-width="1.5" opacity="0.7"/>
+              <animateMotion dur="90s" repeatCount="indefinite" rotate="auto">
+                <mpath xlink:href="#snake-motion-path"/>
+              </animateMotion>
+            </g>
+            `;
+
+            // Filtro de glow neon (se não existir defs, adiciona um)
+            if (!/</defs>/.test(svg)) {
+              svg = svg.replace(/<svg([^>]*)>/, `<svg$1>\n<defs></defs>`);
+            }
+            svg = svg.replace(/<defs>/, `<defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            `);
+
+            // Insere o grupo do robô antes de fechar </svg>
+            svg = svg.replace(/<\/svg>\s*$/, `${robotGroup}\n</svg>`);
+
+            fs.writeFileSync(output, svg, "utf8");
+          }
+
+          fs.mkdirSync("dist", { recursive: true });
+          robotize("dist/github-snake.svg", "dist/github-robot.svg", "#00FF88", "#00FF88");
+          robotize("dist/github-snake-dark.svg", "dist/github-robot-dark.svg", "#00FF88", "#00FF88");
+          console.log("✅ Robot SVGs generated.");
+          EOF
+
+      - name: Run robotize
+        run: node robotize.js
+
+      # 4) Publica os arquivos em um branch separado (output)
+      - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
