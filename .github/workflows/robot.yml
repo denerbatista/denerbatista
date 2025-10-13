@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 1) Gera a animação base (snake) usando Platane/snk
+      # 1) Gera a animação base (snake)
       - name: Generate snake SVG
         uses: Platane/snk@v3
         with:
@@ -22,30 +22,51 @@ jobs:
             dist/github-snake.svg?palette=github-light
             dist/github-snake-dark.svg?palette=github-dark&color_snake=00FFAA&color_dots=#00FFAA,#00DD88,#003322
 
-      # 2) Instala Node para rodar o script de "robotização"
+      # 2) Node para rodar o script
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # 3) Cria o script que converte a snake num robô animado
+      # 3) Script CORRIGIDO que “robotiza” a snake
       - name: Write robotize script
         run: |
           cat > robotize.js <<'EOF'
           const fs = require("fs");
 
-          function robotize(input, output, headColor="#00FF88", stroke="#00FF88") {
+          function robotize(input, output, headColor = "#00FF88", stroke = "#00FF88") {
             let svg = fs.readFileSync(input, "utf8");
 
-            // Garante que haja um path de movimento com id estável
-            // pega o PRIMEIRO <path ...> e coloca um id para animar
-            svg = svg.replace(/<path(?![^>]*id=)/, '<path id="snake-motion-path"');
+            // Garante um path de movimento com id estável
+            // (pega o primeiro <path ...> que não tenha id)
+            svg = svg.replace(/<path(?![^>]*\bid=)[^>]*>/, (m) => {
+              // injeta o id sem mexer nos demais atributos
+              return m.replace("<path", '<path id="snake-motion-path"');
+            });
 
-            // Opcional: esconder a cabeça/linha original, quando identificável
-            svg = svg.replace(/id="snake"([^>]*)>/, 'id="snake"$1 style="opacity:.22">');
+            // Caso não tenha conseguido injetar (p.ex., já existe id),
+            // garante que exista o id em algum path:
+            if (!svg.includes('id="snake-motion-path"')) {
+              svg = svg.replace(/<path[^>]*id="([^"]+)"[^>]*>/, (m) => {
+                return m.replace(/id="[^"]+"/, 'id="snake-motion-path"');
+              });
+            }
 
-            // Injeta o ROBÔ (vetor simples neon) + animação ao final do SVG
-            // O robô é um grupo vetorial leve; ele "segue" o caminho com animateMotion.
+            // Filtro glow: se não houver <defs>, cria; se houver, só injeta o filtro
+            if (!/<defs>/.test(svg)) {
+              svg = svg.replace(/<svg([^>]*)>/, `<svg$1>\n<defs></defs>`);
+            }
+            svg = svg.replace(/<defs>/, `<defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            `);
+
+            // Grupo do robô + animação seguindo o path
             const robotGroup = `
             <g id="robot" filter="url(#glow)">
               <!-- cabeça -->
@@ -60,30 +81,16 @@ jobs:
               <circle cx="-11" cy="-14" r="2" fill="${headColor}" />
               <line x1="7" y1="-10" x2="11" y2="-14" stroke="${stroke}" stroke-width="2" />
               <circle cx="11" cy="-14" r="2" fill="${headColor}" />
-              <!-- corpo "circuito" -->
+              <!-- corpo -->
               <rect x="-8" y="11" width="16" height="10" rx="2" fill="${headColor}" opacity="0.2"/>
               <path d="M -6 12 L -6 18 M -2 12 L -2 18 M 2 12 L 2 18 M 6 12 L 6 18" stroke="${headColor}" stroke-width="1.5" opacity="0.7"/>
               <animateMotion dur="90s" repeatCount="indefinite" rotate="auto">
-                <mpath xlink:href="#snake-motion-path"/>
+                <mpath href="#snake-motion-path"/>
               </animateMotion>
             </g>
             `;
 
-            // Filtro de glow neon (se não existir defs, adiciona um)
-            if (!/</defs>/.test(svg)) {
-              svg = svg.replace(/<svg([^>]*)>/, `<svg$1>\n<defs></defs>`);
-            }
-            svg = svg.replace(/<defs>/, `<defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            `);
-
-            // Insere o grupo do robô antes de fechar </svg>
+            // Injeta o grupo imediatamente antes do fechamento do SVG
             svg = svg.replace(/<\/svg>\s*$/, `${robotGroup}\n</svg>`);
 
             fs.writeFileSync(output, svg, "utf8");
@@ -98,7 +105,7 @@ jobs:
       - name: Run robotize
         run: node robotize.js
 
-      # 4) Publica os arquivos em um branch separado (output)
+      # 4) Publica no branch output
       - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
