@@ -3,16 +3,6 @@ README do perfil GitHub: github.com/denerbatista
 Autor: Dener Gomes Batista
 Tema: Full Stack Dev com "robô devorador de commits" no lugar da cobrinha
 -->
----
-
-<div align="center">
-  <a href="https://github.com/denerbatista">
-    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=denerbatista&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true"/>
-    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=denerbatista&layout=compact&langs_count=8&theme=chartreuse-dark"/>
-  </a>
-</div>
-
----
 
 ### 🚀 Sobre mim
 
@@ -22,8 +12,17 @@ Gosto de transformar ideias em soluções reais e impactar positivamente o mundo
 
 🧠 **Foco atual:** desenvolvimento de plataformas educacionais e sistemas de eventos inteligentes.  
 ⚙️ **Interesses:** automação, arquitetura limpa, integração entre IA e back-end.  
-🎓 **Formação:** pedagogia e tecnologia da informação.  
+🎓 **Formação:** Técnico em Iformatica, desenvolvedor Web Fullstack e Analise e Desenvolvimento de Sistemas.  
 💡 **Mente criativa:** unir design, código e propósito.
+
+---
+
+<div align="center">
+  <a href="https://github.com/denerbatista">
+    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=denerbatista&show_icons=true&theme=chartreuse-dark&include_all_commits=true&count_private=true"/>
+    <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=denerbatista&layout=compact&langs_count=8&theme=chartreuse-dark"/>
+  </a>
+</div>
 
 ---
 
@@ -76,13 +75,11 @@ Gosto de transformar ideias em soluções reais e impactar positivamente o mundo
 
 - 🧾 **Sistema de Eventos com QR Code e Pix** – controle de inscrições e validação inteligente.  
 - 🧑‍🏫 **Plataforma Educacional Unir Cursos** – cursos online com backend em Node e Prisma.  
-- ⚙️ **Sistema Inspetec** – monitoramento inteligente com IA e controle de acesso facial.  
-- 💻 **Dashboard Excel Avançado** – automação de relatórios e gráficos dinâmicos.
 
 > Confira todos os projetos em: [github.com/denerbatista?tab=repositories](https://github.com/denerbatista?tab=repositories)
 
 ---
 
 <p align="center">
-  <sub>Feito com 💚 e muita cafeína por <a href="https://github.com/denerbatista">Dener Batista</a> 🚀</sub>
+  <sub>Feito com 💚 e sem cafeína por <a href="https://github.com/denerbatista">Dener Batista</a> 🚀</sub>
 </p>
